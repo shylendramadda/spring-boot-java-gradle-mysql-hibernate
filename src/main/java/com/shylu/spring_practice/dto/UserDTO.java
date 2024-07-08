@@ -1,16 +1,7 @@
-package com.shylu.spring_practice.domain;
+package com.shylu.spring_practice.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
     private Long id;
-
     private String uuid;
     private String name;
     private String username;
