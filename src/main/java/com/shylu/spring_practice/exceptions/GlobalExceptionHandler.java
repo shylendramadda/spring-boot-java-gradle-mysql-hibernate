@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
                 request.getDescription(false),
                 HttpStatus.CONFLICT.value()
         );
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(BadRequestException.class)

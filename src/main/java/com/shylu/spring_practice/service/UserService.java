@@ -31,7 +31,7 @@ public class UserService {
     public UserDTO getUser(UserDTO userDTO) {
         User dbUser = userRepo.findByEmailOrMobileAndPassword(userDTO.getEmail(), userDTO.getMobile(), userDTO.getPassword());
         if (dbUser == null) {
-            throw new ResourceNotFoundException(Constants.userExists);
+            throw new ResourceNotFoundException(Constants.userNotExists);
         }
         return UserMapper.INSTANCE.userToUserDTO(dbUser);
     }
