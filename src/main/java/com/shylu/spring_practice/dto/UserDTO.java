@@ -8,6 +8,7 @@ public class UserDTO {
     private String password;
     private String email;
     private String mobile;
+    private String role;
 
     public Long getId() {
         return id;
@@ -63,5 +64,13 @@ public class UserDTO {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
     }
 }

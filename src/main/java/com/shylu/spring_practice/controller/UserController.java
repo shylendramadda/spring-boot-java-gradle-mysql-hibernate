@@ -19,6 +19,6 @@ public class UserController {
 
     @GetMapping
     public UserDTO getUser(@RequestBody UserDTO userDTO) {
-        return  userService.getUser(userDTO);
+        return userService.getUser(userDTO);
     }
 }
