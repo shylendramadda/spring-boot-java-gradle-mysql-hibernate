@@ -4,14 +4,16 @@ import com.shylu.spring_practice.domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    User findByUuid(String uuid);
+    Optional<User> findByUuid(String uuid);
 
-    User findByEmailOrMobile(String email, String mobile);
+    Optional<User> findByEmailOrMobile(String email, String mobile);
 
-    User findByEmailOrMobileAndPassword(String email, String mobile, String password);
+    Optional<User> findByEmailOrMobileAndPassword(String email, String mobile, String password);
 
-    User findByUsername(String username);
+    Optional<User> findByUsername(String username);
 }
