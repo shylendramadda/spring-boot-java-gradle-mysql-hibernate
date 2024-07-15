@@ -4,8 +4,9 @@ public interface Constants {
     // messages
     String success = "success";
     String failure = "failure";
-    String userExists = "User already exists";
-    String userNotExists = "User not found";
+    String userAlreadyExists = "User already exists";
+    String userNotFound = "User not found";
+    String invalidCredentials = "Invalid credentials";
     String userUpdateSuccess = "User updated successfully";
     String userDeleteSuccess = "User deleted successfully";
 }

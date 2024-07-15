@@ -22,7 +22,7 @@ public class UserController {
 
     @GetMapping
     public UserDTO login(@RequestBody UserDTO userDTO) {
-        return userService.get(userDTO);
+        return userService.login(userDTO);
     }
 
     @PutMapping

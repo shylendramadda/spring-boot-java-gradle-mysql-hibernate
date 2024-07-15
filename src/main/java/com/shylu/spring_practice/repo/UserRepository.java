@@ -13,7 +13,9 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     Optional<User> findByEmailOrMobile(String email, String mobile);
 
-    Optional<User> findByEmailOrMobileAndPassword(String email, String mobile, String password);
+    Optional<User> findByEmailOrMobileOrUsername(String email, String mobile, String username);
 
     Optional<User> findByUsername(String username);
+
+    void deleteByUuid(String uuid);
 }

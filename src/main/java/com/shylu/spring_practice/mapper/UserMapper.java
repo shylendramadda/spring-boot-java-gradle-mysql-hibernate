@@ -13,15 +13,19 @@ import java.util.List;
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
+    @Mapping(target = "password", ignore = true)
     UserDTO toDto(User user);
 
+    @Mapping(target = "password", ignore = true)
     List<UserDTO> toDtos(List<User> users);
 
     @Mapping(target = "enabled", ignore = true)
+    @Mapping(target = "id", ignore = true)
     User toUser(UserDTO userDTO);
 
-    List<User> toUsers(List<UserDTO> userDTOs);
+//    List<User> toUsers(List<UserDTO> userDTOs);
 
     @Mapping(target = "enabled", ignore = true)
+    @Mapping(target = "id", ignore = true)
     void updateUserFromDto(UserDTO userDTO, @MappingTarget User user);
 }
