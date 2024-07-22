@@ -10,6 +10,7 @@ import com.shylu.spring_practice.mapper.UserMapper;
 import com.shylu.spring_practice.repo.UserRepository;
 import com.shylu.spring_practice.util.Constants;
 import com.shylu.spring_practice.util.RandomUtils;
+import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -51,17 +52,25 @@ public class UserService {
 
     public StatusResponse update(UserDTO userDTO) {
         User dbUser = getUserByUid(userDTO);
-        UserMapper.INSTANCE.updateUserFromDto(userDTO, dbUser);
-        dbUser.setEnabled(true);
-        dbUser.setPassword(passwordEncoder.encode(dbUser.getPassword()));
-        userRepository.save(dbUser);
-        dbUser.setPassword(null);
+        User newUser = UserMapper.INSTANCE.updateUserFromDto(userDTO, dbUser);
+        newUser.setEnabled(true);
+        String password = userDTO.getPassword();
+        if (!StringUtils.isBlank(password)) {
+            newUser.setPassword(passwordEncoder.encode(password));
+        } else {
+            newUser.setPassword(dbUser.getPassword());
+        }
+        userRepository.save(newUser);
         return new StatusResponse(Constants.success, 200, Constants.userUpdateSuccess, dbUser);
     }
 
     public StatusResponse delete(UserDTO userDTO) {
         User dbUser = getUserByUid(userDTO);
-        userRepository.deleteByUuid(dbUser.getUuid());
+        if (!dbUser.getRoles().contains(Constants.admin)) {
+            userRepository.deleteByUuid(dbUser.getUuid());
+        } else {
+            return new StatusResponse(Constants.failure, 404, Constants.canNotDeleteAdmin);
+        }
         return new StatusResponse(Constants.success, 200, Constants.userDeleteSuccess);
     }
 

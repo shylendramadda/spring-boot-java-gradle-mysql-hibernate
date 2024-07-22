@@ -25,7 +25,8 @@ public interface UserMapper {
 
 //    List<User> toUsers(List<UserDTO> userDTOs);
 
-    @Mapping(target = "enabled", ignore = true)
     @Mapping(target = "id", ignore = true)
-    void updateUserFromDto(UserDTO userDTO, @MappingTarget User user);
+    @Mapping(target = "enabled", ignore = true)
+    @Mapping(target = "password", ignore = true)
+    User updateUserFromDto(UserDTO userDTO, @MappingTarget User user);
 }
